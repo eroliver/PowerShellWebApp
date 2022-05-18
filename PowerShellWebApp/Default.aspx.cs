@@ -25,8 +25,28 @@ namespace PowerShellWebApp
             // Initialize PowerShell engine
             var shell = PowerShell.Create();
 
+            // Create a base command, which would be tied to specific request forms/sections
+            // This would need to be dynamically generated based on the request, but in this example, the customer can perform a "contains" search of processes
+            string baseCommand = "Get-Process";
+
+            //Create a string builder object to hold the final command that will be used, which will be modified based on input
+            System.Text.StringBuilder fullCommand = new StringBuilder(baseCommand);
+
+            // Store the argument passed by the text box
+            string customerInput = Input.Text;
+
+            if (customerInput != null)
+            {
+                fullCommand.Append(" -Name \"*");
+                fullCommand.Append(customerInput);
+                fullCommand.Append("*\"");
+            }
+
+            //Make sure the final command is piped to Out-String or the results will be ps objects
+            fullCommand.Append(" | Out-String");
+
             // Add the script to the PowerShell object
-            shell.Commands.AddScript(Input.Text);
+            shell.Commands.AddScript(fullCommand.ToString());
 
             // Execute the script
             var results = shell.Invoke();
@@ -35,7 +55,7 @@ namespace PowerShellWebApp
             // Note : use |out-string for console-like output
             if (results.Count() > 0)
             {
-                // We use a string builder ton create our result text
+                // We use a string builder to create our result text
                 var builder = new StringBuilder();
 
                 foreach (var psObject in results)
