@@ -35,6 +35,7 @@ namespace PowerShellWebApp
             // Store the argument passed by the text box
             string customerInput = Input.Text;
 
+            // add the passed argument if there was one passed
             if (customerInput != null)
             {
                 fullCommand.Append(" -Name \"*");

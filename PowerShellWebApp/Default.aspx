@@ -9,9 +9,9 @@
 <form id="form1" runat="server">
     <div>
         <table>
-            <tr><td>&nbsp;</td><td><h1 align="left">PowerShell Command Harness</h1></td></tr>
+            <tr><td>&nbsp;</td><td><h1 align="left">PowerShell Get-Process Tests</h1></td></tr>
             <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td><td>PowerShell Command</td></tr>
+            <tr><td>&nbsp;</td><td>Enter text here to search for a particular process</td></tr>
             <tr><td>
                 <br />
                 </td><td>
@@ -21,7 +21,7 @@
                 &nbsp;</td><td>
                 <asp:Button ID="ExecuteCode" runat="server" Text="Execute" Width="200" onclick="ExecuteCode_Click" />
             </td></tr>
-                <tr><td>&nbsp;</td><td><h3>Result</h3></td></tr>
+                <tr><td>&nbsp;</td><td><h3>Matching Processes:</h3></td></tr>
                 <tr><td>
                     &nbsp;</td><td>
                     <asp:TextBox ID="ResultBox" TextMode="MultiLine" Width="700" Height="200" runat="server"></asp:TextBox>
